@@ -1,2 +1,210 @@
-<!-- your html code here -->
-<p>Hello, I'm the navbar.html</p>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>One Page Wonder</title>
+  <style>
+    /* reinicio básico */
+    * { box-sizing: border-box; margin: 0; padding: 0 }
+    body { font-family: sans-serif; }
+
+    /* navbar fija */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #343a40;
+      z-index: 1000;
+    }
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: .5rem 1rem;
+    }
+    .brand a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.25rem;
+    }
+    .toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .toggle span {
+      width: 25px;
+      height: 3px;
+      background: #fff;
+      margin: 4px 0;
+    }
+    .menu {
+      list-style: none;
+      display: flex;
+    }
+    .menu li + li { margin-left: 1rem }
+    .menu a {
+      color: #ddd;
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .menu a:hover { color: #fff }
+
+    /* móvil */
+    @media (max-width: 768px) {
+      .toggle { display: flex }
+      .menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background: #343a40;
+        display: none;
+      }
+      .menu li + li {
+        margin: 0;
+        border-top: 1px solid #444;
+      }
+      .menu a {
+        padding: .75rem 1rem;
+        display: block;
+      }
+      .toggle.active + .menu {
+        display: flex;
+      }
+    }
+
+    /* espacio para contenido bajo nav */
+    main { padding-top: 60px }
+
+    /* estilos de sección (solo demo) */
+    section {
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+    #tagline {
+      background: url('https://source.unsplash.com/1600x900/?city') center/cover no-repeat;
+      /* texto en negro, sin sombra */
+      color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    #tagline h1 {
+      font-size: 3rem;
+      margin-bottom: .5rem;
+      color: #000;
+    }
+    #tagline p {
+      font-size: 1.5rem;
+      color: #000;
+    }
+
+    #first-heading,
+    #services,
+    #portfolio,
+    #contact {
+      background: #f8f9fa;
+      color: #333;
+    }
+    #first-heading h2,
+    #services h2,
+    #portfolio h2,
+    #contact h2 {
+      margin-bottom: 1rem;
+      font-size: 2rem;
+    }
+    #first-heading p,
+    #services p,
+    #portfolio p,
+    #contact p {
+      max-width: 700px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body id="top">
+
+  <nav>
+    <div class="container">
+      <div class="brand">
+        <a href="#tagline">Start Bootstrap</a>
+      </div>
+      <div class="toggle" id="toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <ul class="menu" id="menu">
+        <li><a href="#tagline">Inicio</a></li>
+        <li><a href="#first-heading">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <section id="tagline">
+      <h1>One Page Wonder</h1>
+      <p>Will Knock Your Socks Off</p>
+    </section>
+
+    <section id="first-heading">
+      <h2>This First Heading Will Catch Your Eye</h2>
+      <p>Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper.</p>
+    </section>
+
+    <section id="services">
+      <h2>The Second Heading Is Pretty Cool Too</h2>
+      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+    </section>
+
+    <section id="portfolio">
+      <h2>Portfolio</h2>
+      <p>Vestibulum id ligula porta felis euismod semper.</p>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Donec ullamcorper nulla non metus auctor fringilla.</p>
+    </section>
+  </main>
+
+  <script>
+    const toggle = document.getElementById('toggle')
+    const menu   = document.getElementById('menu')
+    const links  = document.querySelectorAll('.menu a')
+
+    // abre/cierra menú en móvil
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('active')
+      menu.classList.toggle('active')
+    })
+
+    // smooth scroll y cierre de menú al clicar enlace
+    links.forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault()
+        const target = document.querySelector(link.getAttribute('href'))
+        if (target) {
+          const offset = -60
+          const top = target.getBoundingClientRect().top + window.pageYOffset + offset
+          window.scrollTo({ top, behavior: 'smooth' })
+        }
+        if (menu.classList.contains('active')) {
+          toggle.classList.remove('active')
+          menu.classList.remove('active')
+        }
+      })
+    })
+  </script>
+
+</body>
+</html>
