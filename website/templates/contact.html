@@ -11,26 +11,32 @@
     </div>
   </div>
   <div class="row justify-content-center">
-    <div class="col-md-6">
-      <div class="mb-3">
-        <label for="email-input" class="form-label fw-bold">Your E-mail</label>
-        <input
-          type="email"
-          class="form-control w-50"
-          id="email-input"
-          placeholder="Your email"
-        />
-      </div>
-      <div class="mb-3">
-        <label for="message-input" class="form-label fw-bold"
-          >Your message</label
-        ><textarea
-          name="message"
-          id="message-input"
-          rows="3"
-          class="w-50"
-        ></textarea>
-      </div>
+    <div class="col-12 col-md-6 p-4">
+      <form>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Your E-mail</label>
+          <input
+            type="email"
+            class="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+            placeholder="Your email"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="message-input" class="form-label">Your message</label>
+          <textarea
+            name="message"
+            class="form-control"
+            id="message-input"
+            placeholder="Pleace enter your message here..."
+            rows="3"
+          ></textarea>
+        </div>
+        <div class="d-flex justify-content-md-end">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
